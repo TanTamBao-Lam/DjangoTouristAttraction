@@ -6,29 +6,28 @@
 <link rel="stylesheet" href="{% static 'tourist_attractions/style.css' %}">
 {% endblock %}
 
-
 {% block content %}
-<div class="container mt-2">
-    <h1>This is a list of attractions in America!</h1>
+<div class="container">
+    <h1>This is a list of tourist attractions for {{statename|title}}</h1>
 
-    <!-- Attraction list table -->
     <table class="table table-striped table-hover">
         <thead class="thead-dark">
             <tr>
                 <th>Attraction</th>
                 <th>State</th>
-                <th>Details</th>
             </tr>
         </thead>
         <tbody>
+            <!--{# Display all attractions inside selected state #}-->
             {% for attraction in attractions|dictsort:"state" %}
-            <tr>
-                <td>{{ attraction.attraction_name }}</td>
-                <td>{{ attraction.state }}</td>
-                <td><a href="{% url 'details' attraction.state|slugify %}">Details</a></td>
-            </tr>
+                {% if attraction.state|lower == statename %}
+                <tr>
+                    <td>{{ attraction.attraction_name }}</td>
+                    <td>{{ attraction.state }}</td>
+                </tr>
+                {% endif %}
             {% endfor %}
         </tbody>
     </table>
 </div>
-{% endblock %}
+{% endblock%}
