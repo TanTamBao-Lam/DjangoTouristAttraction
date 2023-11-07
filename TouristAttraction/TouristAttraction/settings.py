@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tourist_attractions',
+    'tourist_attractions.apps.TouristAttractionsConfig',
     'bootstrap5'
 ]
 
